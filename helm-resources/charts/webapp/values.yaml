@@ -1,0 +1,13 @@
+replicaCount: 3
+
+image:
+  repository: ithelpstream/webapp
+  tag: 2.0.0
+
+server:
+  name: webapp
+  port: 80
+
+service:
+  name: webapp-service
+  type: LoadBalancer

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: webapp-deployment
+ namespace: {{ .Release.namespace }}
+ labels:
+   app: {{ .Values.server.name }}
+   type: front-end
+spec:
+  template:
+    metadata:
+      name: web
+      labels:
+        app: {{ .Values.server.name }}
+        type: front-end
+    spec:
+      containers:
+        - name: web
+          image: "{{ .Values.image.repository}}:{{ .Values.image.tag }}"
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      type: front-end
